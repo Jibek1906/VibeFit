@@ -12,7 +12,7 @@ body {
 
 header {
     background-color: #A19C84;
-    padding: 15px 5%;
+    padding: 10px 5%;
     margin-top: 30px;
     margin-left: 30px;
     margin-right: 30px;
@@ -71,18 +71,26 @@ h2 {
     height: 35px;
     border-radius: 50%;
 }
-
 .hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 50px 5%;
+    padding: 50px 30px;
     background-color: #EBEADE;
     min-height: calc(100vh - 100px);
 }
 
 .hero-left {
     max-width: 40%;
+    padding-right: 30px;
+}
+
+.hero-right img {
+    width: 690px;
+    height: 600px;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0;
 }
 
 .hero-left h1 {
@@ -99,14 +107,15 @@ h2 {
 }
 
 .cta-button {
-    padding: 15px 30px;
+    padding: 25px 100px;
+    margin-top: 50px;
     background-color: #A19C84;
     color: #fff;
     font-size: 18px;
     border: none;
     cursor: pointer;
     font-weight: bold;
-    border-radius: 30px;
+    border-radius: 40px;
     transition: background-color 0.3s ease;
 }
 
@@ -115,8 +124,8 @@ h2 {
 }
 
 .hero-right img {
-    width: 690px;
-    height: 600px;
+    width: 780px;
+    height: 620px;
     border-radius: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
