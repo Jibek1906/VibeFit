@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeFit - Weight Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../static/css/personal_office.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">VIBE<span>FIT</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">
+                        <h2>Home</h2>
+                    </a></li>
+                <li><a href="#">
+                        <h2>About</h2>
+                    </a></li>
+                <li><a href="#">
+                        <h2>Contact Us</h2>
+                    </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <img src="../static/img/avatar.png" alt="User Profile" class="profile-img">
+            <div class="details">
+                <h2 class="user"><strong>User Name:</strong> Akylbek kyzy Zhibek</h2>
+                <p><strong>Starting Weight:</strong> 50</p>
+                <p><strong>Goal:</strong> 45</p>
+                <p><strong>Start Date:</strong> 31.11.2024</p>
+                <button class="edit-btn">Edit</button>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 style="text-align: center;">Weight Tracking Chart</h2>
+            <canvas id="weightChart"></canvas>
+        </div>
+    </div>
+
+    <footer>
+        Workout Page
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('weightChart').getContext('2d');
+        const weightChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                datasets: [{
+                    label: 'Weight (kg)',
+                    data: [50, 49.5, 49, 48, 47.5, 47],
+                    borderColor: '#9b957e',
+                    backgroundColor: 'rgba(155, 149, 126, 0.2)',
+                    borderWidth: 2,
+                    fill: true,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#9b957e'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: '#333'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#333'
+                        }
+                    },
+                    y: {
+                        beginAtZero: false,
+                        grid: {
+                            color: '#ddd'
+                        },
+                        ticks: {
+                            color: '#333'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
