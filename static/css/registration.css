@@ -14,9 +14,21 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
+}
+
+.page-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url("../img/registration.jpg");
     background-size: cover;
     background-position: center;
+    filter: blur(10px);
+    z-index: -1;
 }
 
 .registration-container {
@@ -29,6 +41,7 @@ body {
     background-color: white;
     border-radius: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .registration-image {
@@ -91,7 +104,7 @@ button {
     margin-top: 20px;
     border: none;
     border-radius: 30px;
-    background-color: #A19C84;
+    background-color: #538558;
     color: white;
     font-size: 16px;
     cursor: pointer;

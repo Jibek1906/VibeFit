@@ -14,5 +14,17 @@ def register():
 def user_details():
     return render_template('user_details.html')
 
+@app.route('/personal-office')
+def personal_office():
+    return render_template('personal_office.html')
+
+@app.route('/workout')
+def workout():
+    return render_template('workout.html')
+
+@app.route('/nutrition')
+def nutrition():
+    return render_template('nutrition.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

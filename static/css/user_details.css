@@ -14,9 +14,21 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
+}
+
+.page-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url("../img/background.jpg");
     background-size: cover;
     background-position: center;
+    filter: blur(3px);
+    z-index: -1;
 }
 
 .form-container {
@@ -46,6 +58,7 @@ form input, form select {
     font-size: 16px;
     background-color: #EBEADE;
     box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -80,7 +93,7 @@ button {
     margin-top: 20px;
     border: none;
     border-radius: 30px;
-    background-color: #A19C84;
+    background-color: #538558;
     color: white;
     font-size: 16px;
     cursor: pointer;

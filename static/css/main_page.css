@@ -13,13 +13,9 @@ body {
 header {
     background-color: #A19C84;
     padding: 10px 5%;
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 30px;
     font-family: 'Baloo', sans-serif;
     color: #fff;
 }
@@ -41,6 +37,11 @@ h2 {
     margin-left: 0;
     font-size: 24px;
     color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+h3 {
+    font-family: 'Arial', sans-serif;
 }
 
 .logo {
@@ -75,7 +76,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 30px;
+    padding: 40px 40px;
     background-color: #EBEADE;
     min-height: calc(100vh - 100px);
 }
@@ -83,14 +84,15 @@ h2 {
 .hero-left {
     max-width: 40%;
     padding-right: 30px;
+    margin-left: 20px;
 }
 
 .hero-right img {
     width: 690px;
     height: 600px;
     border-radius: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 0;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
 }
 
 .hero-left h1 {
@@ -109,7 +111,7 @@ h2 {
 .cta-button {
     padding: 25px 100px;
     margin-top: 50px;
-    background-color: #A19C84;
+    background-color: #538558;
     color: #fff;
     font-size: 18px;
     border: none;
@@ -124,8 +126,8 @@ h2 {
 }
 
 .hero-right img {
-    width: 780px;
+    width: 740px;
     height: 660px;
     border-radius: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 10px 6px rgba(0, 0, 0, 0.1);
 }
