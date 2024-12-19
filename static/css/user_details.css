@@ -109,3 +109,12 @@ p a {
     color: #000000;
     text-decoration: none;
 }
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: #a8a48c;
+    color: #fff;
+    font-size: 14px;
+}

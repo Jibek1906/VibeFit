@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f4ed;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Baloo', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h2 {
+    margin-left: 0;
+    font-size: 18px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+.header {
+    background-color: #a8a48c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.header .logo span {
+    color: #e0decc;
+    font-family: 'Baloo', sans-serif;
+}
+
+.header nav ul {
+    display: flex;
+}
+
+.header nav ul li {
+    margin-right: 20px;
+}
+
+.header nav ul li a {
+    color: #fff;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+.calories {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.progress-box {
+    background: #d4d0b6;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.calories-circle {
+    background: #fff;
+    padding: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.calories-circle span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.macros {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.meals {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.meal {
+    background: #e6e5d7;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.meal h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.meal table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.meal table th,
+.meal table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.add-btn {
+    margin-top: 10px;
+    background: #b3af8d;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-btn:hover {
+    background: #8e8a6f;
+}
