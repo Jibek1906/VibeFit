@@ -6,10 +6,30 @@
 }
 
 body {
-    background-color: #f5f4ed;
+    background-image: url('../img/food.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #333;
     line-height: 1.6;
     font-family: 'Baloo', sans-serif;
+    position: relative;
+    z-index: 0;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    filter: blur(5px);
+    z-index: -1;
 }
 
 a {
@@ -33,18 +53,18 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 2px 20px;
 }
 
 .header .logo {
-    font-size: 24px;
+    font-size: 34px;
     font-weight: bold;
     color: #fff;
+    font-family: 'Baloo', sans-serif;
 }
 
 .header .logo span {
     color: #e0decc;
-    font-family: 'Baloo', sans-serif;
 }
 
 .header nav ul {
@@ -56,8 +76,9 @@ ul {
 }
 
 .header nav ul li a {
+    text-decoration: none;
     color: #fff;
-    font-weight: bold;
+    font-size: 18px;
 }
 
 main {
@@ -128,7 +149,7 @@ main {
 
 .add-btn {
     margin-top: 10px;
-    background: #b3af8d;
+    background: #538558;
     color: #fff;
     border: none;
     padding: 8px 12px;

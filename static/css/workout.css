@@ -4,16 +4,12 @@
     box-sizing: border-box;
 }
 
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0e8;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 a {
@@ -36,7 +32,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 2px 20px;
 }
 
 .header .logo {
@@ -65,19 +61,15 @@ h2 {
 }
 
 .slider-container {
-    max-width: 80%;
+    max-width: 60%;
     margin: 30px auto;
     text-align: center;
-}
-
-.slider-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #494939;
+    overflow: hidden;
+    padding: 0 20px;
 }
 
 .swiper-container {
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
     padding: 20px 0;
 }
@@ -90,9 +82,12 @@ h2 {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    width: 100%;
-    box-sizing: border-box;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
+}
+
+.swiper-slide:hover {
+    transform: scale(1.02);
+    border-radius: 10px;
 }
 
 .swiper-slide h3 {
@@ -102,24 +97,15 @@ h2 {
 }
 
 .swiper-slide iframe {
-    width: 60%;
+    width: 80%;
     height: 200px;
     margin: 10px 0;
     border-radius: 10px;
     border: none;
 }
 
-.swiper-slide p {
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-    margin-top: 10px;
-}
-
 .swiper-button-prev,
 .swiper-button-next {
-    color: #fff;
-    background-color: #494939;
     border-radius: 50%;
     padding: 15px;
     width: 40px;
@@ -128,12 +114,12 @@ h2 {
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s ease;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-    background-color: #6a6a56;
+    transform: scale(1.1);
 }
 
 .swiper-pagination {
@@ -148,8 +134,11 @@ h2 {
     margin: 5px;
     display: inline-block;
     border-radius: 50%;
-    transition: background-color 0.3s;
-    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.swiper-pagination-bullet:hover {
+    transform: scale(1.2);
 }
 
 .swiper-pagination-bullet-active {
@@ -157,7 +146,7 @@ h2 {
 }
 
 footer {
-    margin-top: 50px;
+    margin-top: 60px;
     text-align: center;
     padding: 10px;
     background-color: #a8a48c;
