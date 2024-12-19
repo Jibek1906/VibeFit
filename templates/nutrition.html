@@ -9,96 +9,137 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo">VIBE<span>FIT</span></div>
-        <nav>
-            <ul>
-                <li><a href="#">
-                        <h2>Home</h2>
-                    </a></li>
-                <li><a href="#">
-                        <h2>About</h2>
-                    </a></li>
-                <li><a href="#">
-                        <h2>Contact Us</h2>
-                    </a></li>
-                <li><a href="http://127.0.0.1:5000/personal-office">
-                        <h2>Personal Office</h2>
-                    </a></li>
-                <li><a href="http://127.0.0.1:5000/workout">
-                        <h2>Workout</h2>
-                    </a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="background"></div>
 
-    <main>
-        <section class="calories">
-            <div class="progress-box">
-                <h2>Today</h2>
-                <div class="calories-circle">
-                    <p>Eaten <span>1129</span></p>
-                    <p>Left <span>381</span></p>
+    <div class="content">
+        <header class="header">
+            <div class="logo">VIBE<span>FIT</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">
+                            <h2>Home</h2>
+                        </a></li>
+                    <li><a href="#">
+                            <h2>About</h2>
+                        </a></li>
+                    <li><a href="#">
+                            <h2>Contact Us</h2>
+                        </a></li>
+                    <li><a href="http://127.0.0.1:5000/personal-office#">
+                            <h2>Personal Office</h2>
+                        </a></li>
+                    <li><a href="http://127.0.0.1:5000/workout">
+                            <h2>Workout</h2>
+                        </a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="calories">
+                <div class="progress-box">
+                    <button class="back-btn">&lt;</button>
+                    <h1>Today</h1>
+                    <div class="calories-circle">
+                        <p>Eaten</p>
+                        <p class="big-text">1129</p>
+                        <p>Left</p>
+                        <p class="big-text">381</p>
+                    </div>
+                    <div class="macros">
+                        <div class="macro-item">Protein: 50g</div>
+                        <div class="macro-item">Carbs: 100g</div>
+                        <div class="macro-item">Fat: 30g</div>
+                    </div>
+                    <button class="next-btn">&gt;</button>
                 </div>
-                <div class="macros">
-                    <p>Proteins <span>45</span></p>
-                    <p>Fats <span>45</span></p>
-                    <p>Carbohydrates <span>45</span></p>
+            </section>
+
+            <section class="meals">
+                <div class="meal">
+                    <h3>Breakfast</h3>
+                    <table>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Kcal</th>
+                            <th>Proteins</th>
+                            <th>Fats</th>
+                            <th>Carbs</th>
+                        </tr>
+                        <tr>
+                            <td>Fried eggs</td>
+                            <td>200</td>
+                            <td>12.3</td>
+                            <td>10.5</td>
+                            <td>0.7</td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td>98</td>
+                            <td>0.8</td>
+                            <td>0.8</td>
+                            <td>0.8</td>
+                        </tr>
+                    </table>
+                    <button class="add-btn">add</button>
                 </div>
-            </div>
-        </section>
 
-        <section class="meals">
-            <div class="meal">
-                <h3>Breakfast</h3>
-                <table>
-                    <tr>
-                        <th>Meal</th>
-                        <th>Kcal</th>
-                        <th>Proteins</th>
-                        <th>Fats</th>
-                        <th>Carbs</th>
-                    </tr>
-                    <tr>
-                        <td>Fried Eggs</td>
-                        <td>200</td>
-                        <td>12.3</td>
-                        <td>10.5</td>
-                        <td>0.7</td>
-                    </tr>
-                    <tr>
-                        <td>Apple</td>
-                        <td>98</td>
-                        <td>0.8</td>
-                        <td>0.8</td>
-                        <td>0.8</td>
-                    </tr>
-                </table>
-                <button class="add-btn">Add</button>
-            </div>
+                <div class="meal">
+                    <h3>Lunch</h3>
+                    <table>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Kcal</th>
+                            <th>Proteins</th>
+                            <th>Fats</th>
+                            <th>Carbs</th>
+                        </tr>
+                        <tr>
+                            <td>Potatoes with meat</td>
+                            <td>450</td>
+                            <td>28.3</td>
+                            <td>32.5</td>
+                            <td>29.1</td>
+                        </tr>
+                    </table>
+                    <button class="add-btn">add</button>
+                </div>
 
-            <div class="meal">
-                <h3>Lunch</h3>
-                <table>
-                    <tr>
-                        <th>Meal</th>
-                        <th>Kcal</th>
-                        <th>Proteins</th>
-                        <th>Fats</th>
-                        <th>Carbs</th>
-                    </tr>
-                    <tr>
-                        <td>Potatoes with meat</td>
-                        <td>450</td>
-                        <td>28.3</td>
-                        <td>32.5</td>
-                        <td>29.1</td>
-                    </tr>
-                </table>
-                <button class="add-btn">Add</button>
-            </div>
-        </section>
-    </main>
+                <div class="meal">
+                    <h3>Dinner</h3>
+                    <table>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Kcal</th>
+                            <th>Proteins</th>
+                            <th>Fats</th>
+                            <th>Carbs</th>
+                        </tr>
+                    </table>
+                    <button class="add-btn">add</button>
+                </div>
+
+                <div class="meal">
+                    <h3>Snacks</h3>
+                    <table>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Kcal</th>
+                            <th>Proteins</th>
+                            <th>Fats</th>
+                            <th>Carbs</th>
+                        </tr>
+                    </table>
+                    <button class="add-btn">add</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 VibeFit. All rights reserved.</p>
+    </footer>
+
 </body>
 
 </html>
