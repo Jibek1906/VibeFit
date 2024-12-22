@@ -4,142 +4,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeFit - Nutrition Tracker</title>
     <link rel="stylesheet" href="../static/css/nutrition.css">
+    <title>Calories Counter</title>
 </head>
 
 <body>
-    <div class="background"></div>
+    <div class="container">
+        <div class="calendar">
+            <div class="calendar-header">
+                <button id="prev-week">&lt;</button>
+                <h2 id="current-week">December 18 - December 24</h2>
+                <button id="next-week">&gt;</button>
+                <button id="add-meal">Add Meal</button>
+            </div>
 
-    <div class="content">
-        <header class="header">
-            <div class="logo">VIBE<span>FIT</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#">
-                            <h2>Home</h2>
-                        </a></li>
-                    <li><a href="#">
-                            <h2>About</h2>
-                        </a></li>
-                    <li><a href="#">
-                            <h2>Contact Us</h2>
-                        </a></li>
-                    <li><a href="http://127.0.0.1:5000/personal-office#">
-                            <h2>Personal Office</h2>
-                        </a></li>
-                    <li><a href="http://127.0.0.1:5000/workout">
-                            <h2>Workout</h2>
-                        </a></li>
-                </ul>
-            </nav>
-        </header>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
+                        <th>Snacks</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                </tbody>
+            </table>
+        </div>
 
-        <main>
-            <section class="calories">
-                <div class="progress-box">
-                    <button class="back-btn">&lt;</button>
-                    <h1>Today</h1>
-                    <div class="calories-circle">
-                        <p>Eaten</p>
-                        <p class="big-text">1129</p>
-                        <p>Left</p>
-                        <p class="big-text">381</p>
-                    </div>
-                    <div class="macros">
-                        <div class="macro-item">Protein: 50g</div>
-                        <div class="macro-item">Carbs: 100g</div>
-                        <div class="macro-item">Fat: 30g</div>
-                    </div>
-                    <button class="next-btn">&gt;</button>
-                </div>
-            </section>
-
-            <section class="meals">
-                <div class="meal">
-                    <h3>Breakfast</h3>
-                    <table>
-                        <tr>
-                            <th>Meal</th>
-                            <th>Kcal</th>
-                            <th>Proteins</th>
-                            <th>Fats</th>
-                            <th>Carbs</th>
-                        </tr>
-                        <tr>
-                            <td>Fried eggs</td>
-                            <td>200</td>
-                            <td>12.3</td>
-                            <td>10.5</td>
-                            <td>0.7</td>
-                        </tr>
-                        <tr>
-                            <td>Apple</td>
-                            <td>98</td>
-                            <td>0.8</td>
-                            <td>0.8</td>
-                            <td>0.8</td>
-                        </tr>
-                    </table>
-                    <button class="add-btn">add</button>
-                </div>
-
-                <div class="meal">
-                    <h3>Lunch</h3>
-                    <table>
-                        <tr>
-                            <th>Meal</th>
-                            <th>Kcal</th>
-                            <th>Proteins</th>
-                            <th>Fats</th>
-                            <th>Carbs</th>
-                        </tr>
-                        <tr>
-                            <td>Potatoes with meat</td>
-                            <td>450</td>
-                            <td>28.3</td>
-                            <td>32.5</td>
-                            <td>29.1</td>
-                        </tr>
-                    </table>
-                    <button class="add-btn">add</button>
-                </div>
-
-                <div class="meal">
-                    <h3>Dinner</h3>
-                    <table>
-                        <tr>
-                            <th>Meal</th>
-                            <th>Kcal</th>
-                            <th>Proteins</th>
-                            <th>Fats</th>
-                            <th>Carbs</th>
-                        </tr>
-                    </table>
-                    <button class="add-btn">add</button>
-                </div>
-
-                <div class="meal">
-                    <h3>Snacks</h3>
-                    <table>
-                        <tr>
-                            <th>Meal</th>
-                            <th>Kcal</th>
-                            <th>Proteins</th>
-                            <th>Fats</th>
-                            <th>Carbs</th>
-                        </tr>
-                    </table>
-                    <button class="add-btn">add</button>
-                </div>
-            </section>
-        </main>
+        <div class="summary">
+            <h2>Daily Summary</h2>
+            <div class="circle">
+                <p>Total Calories</p>
+                <p class="big-text" id="total-calories">0</p>
+                <p>kcal</p>
+            </div>
+            <div class="macros">
+                <p>Proteins: <span id="total-proteins">0</span> g</p>
+                <p>Fats: <span id="total-fats">0</span> g</p>
+                <p>Carbs: <span id="total-carbs">0</span> g</p>
+            </div>
+            <div class="remaining-calories" id="remaining-calories">
+                Remaining Calories: 1200 kcal
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 VibeFit. All rights reserved.</p>
-    </footer>
+    <div id="meal-modal">
+        <div class="modal-content">
+            <h2>Add Meal</h2>
+            <label for="meal-date">Date:</label>
+            <input type="date" id="meal-date">
+            <label for="meal-type">Meal Type:</label>
+            <select id="meal-type">
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="snacks">Snacks</option>
+            </select>
+            <label for="meal-name">Meal Name:</label>
+            <input type="text" id="meal-name" placeholder="Name of the meal">
+            <label for="meal-calories">Calories:</label>
+            <input type="number" id="meal-calories" placeholder="Calories">
+            <label for="meal-proteins">Proteins:</label>
+            <input type="number" id="meal-proteins" placeholder="Proteins (g)">
+            <label for="meal-fats">Fats:</label>
+            <input type="number" id="meal-fats" placeholder="Fats (g)">
+            <label for="meal-carbs">Carbs:</label>
+            <input type="number" id="meal-carbs" placeholder="Carbs (g)">
+            <button id="save-meal">Save</button>
+            <button id="close-modal">Close</button>
+        </div>
+    </div>
 
+    <script>
+        const totalCaloriesElem = document.getElementById('total-calories');
+        const totalProteinsElem = document.getElementById('total-proteins');
+        const totalFatsElem = document.getElementById('total-fats');
+        const totalCarbsElem = document.getElementById('total-carbs');
+        const remainingCaloriesElem = document.getElementById('remaining-calories');
+        const calendarBodyElem = document.getElementById('calendar-body');
+        const addMealButton = document.getElementById('add-meal');
+        const mealModal = document.getElementById('meal-modal');
+        const closeModalButton = document.getElementById('close-modal');
+        const saveMealButton = document.getElementById('save-meal');
+        const prevWeekButton = document.getElementById('prev-week');
+        const nextWeekButton = document.getElementById('next-week');
+        const currentWeekHeader = document.getElementById('current-week');
+
+        let currentWeekStartDate = new Date();
+        currentWeekStartDate.setDate(currentWeekStartDate.getDate() - currentWeekStartDate.getDay());
+
+        let meals = [];
+        let totalCalories = 0;
+        let totalProteins = 0;
+        let totalFats = 0;
+        let totalCarbs = 0;
+
+        const dailyCalorieGoal = 1200;
+
+        const todayDate = new Date().toISOString().split('T')[0];
+
+        addMealButton.addEventListener('click', () => {
+            mealModal.style.display = 'block';
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            mealModal.style.display = 'none';
+        });
+
+        saveMealButton.addEventListener('click', () => {
+            const mealDate = document.getElementById('meal-date').value;
+            const mealType = document.getElementById('meal-type').value;
+            const mealName = document.getElementById('meal-name').value;
+            const calories = parseInt(document.getElementById('meal-calories').value);
+            const proteins = parseInt(document.getElementById('meal-proteins').value);
+            const fats = parseInt(document.getElementById('meal-fats').value);
+            const carbs = parseInt(document.getElementById('meal-carbs').value);
+
+            const newMeal = { date: mealDate, meal_type: mealType, name: mealName, calories, proteins, fats, carbs };
+            meals.push(newMeal);
+
+            fetch('/api/meals', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newMeal)
+            })
+                .then(response => response.json())
+                .then(() => {
+                    mealModal.style.display = 'none';
+                    generateCalendarRows();
+                    calculateDailyTotals(todayDate);
+                });
+        });
+
+        function generateCalendarRows() {
+            calendarBodyElem.innerHTML = '';
+
+            const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            daysOfWeek.forEach((day, index) => {
+                const currentDate = new Date(currentWeekStartDate);
+                currentDate.setDate(currentDate.getDate() + index);
+
+                const row = document.createElement('tr');
+                const dateCell = document.createElement('td');
+                dateCell.textContent = currentDate.toLocaleDateString();
+
+                const mealCells = ['breakfast', 'lunch', 'dinner', 'snacks'].map(mealType => {
+                    const cell = document.createElement('td');
+                    const meal = meals.filter(m => m.date === currentDate.toISOString().split('T')[0] && m.meal_type === mealType);
+                    if (meal.length > 0) {
+                        meal.forEach(m => {
+                            cell.textContent += `${m.name} (${m.calories} kcal), `;
+                        });
+                        cell.textContent = cell.textContent.slice(0, -2);
+                    }
+                    return cell;
+                });
+
+                row.appendChild(dateCell);
+                mealCells.forEach(cell => row.appendChild(cell));
+                calendarBodyElem.appendChild(row);
+            });
+        }
+
+        function calculateDailyTotals(mealDate) {
+            totalCalories = 0;
+            totalProteins = 0;
+            totalFats = 0;
+            totalCarbs = 0;
+
+            meals.filter(meal => meal.date === mealDate).forEach(meal => {
+                totalCalories += meal.calories;
+                totalProteins += meal.proteins;
+                totalFats += meal.fats;
+                totalCarbs += meal.carbs;
+            });
+
+            totalCaloriesElem.textContent = totalCalories;
+            totalProteinsElem.textContent = totalProteins;
+            totalFatsElem.textContent = totalFats;
+            totalCarbsElem.textContent = totalCarbs;
+
+            remainingCaloriesElem.textContent = `Remaining Calories: ${dailyCalorieGoal - totalCalories} kcal`;
+        }
+
+        prevWeekButton.addEventListener('click', () => {
+            currentWeekStartDate.setDate(currentWeekStartDate.getDate() - 7);
+            generateCalendarRows();
+            updateCurrentWeekHeader();
+        });
+
+        nextWeekButton.addEventListener('click', () => {
+            currentWeekStartDate.setDate(currentWeekStartDate.getDate() + 7);
+            generateCalendarRows();
+            updateCurrentWeekHeader();
+        });
+
+        function updateCurrentWeekHeader() {
+            const weekStartDate = new Date(currentWeekStartDate);
+            const weekEndDate = new Date(currentWeekStartDate);
+            weekEndDate.setDate(weekStartDate.getDate() + 6);
+            currentWeekHeader.textContent = `${weekStartDate.toLocaleDateString()} - ${weekEndDate.toLocaleDateString()}`;
+        }
+
+        generateCalendarRows();
+        calculateDailyTotals(todayDate);
+        updateCurrentWeekHeader();
+    </script>
 </body>
 
 </html>

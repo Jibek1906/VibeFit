@@ -1,43 +1,89 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 
-print(os.path.exists('vibefit.db'))
-
+# Инициализация базы данных
 def init_db():
-    conn = sqlite3.connect('vibefit.db')
-    c = conn.cursor()
+    db_path = 'vibefit.db'
+    
+    # Проверяем, существует ли файл базы данных
+    if not os.path.exists(db_path):
+        print(f"База данных {db_path} не найдена, создаем...")  # Отладочное сообщение
+        conn = sqlite3.connect(db_path)
+        c = conn.cursor()
 
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS workouts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            date TEXT,
-            title TEXT,
-            description TEXT,
-            video_id TEXT
-        )
-    ''')
+        # Создание таблицы для хранения данных о питании
+        c.execute('''
+            CREATE TABLE IF NOT EXISTS meals (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                meal_type TEXT,
+                name TEXT,
+                calories INTEGER,
+                proteins INTEGER,
+                fats INTEGER,
+                carbs INTEGER,
+                date DATE
+            )
+        ''')
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
+        print("Таблица успешно создана!")  # Отладочное сообщение
+    else:
+        print("База данных уже существует.")
 
 init_db()
 
-def get_workouts_from_db(date):
+# Получение списка приемов пищи из базы данных для конкретной даты
+def get_meals_for_day(date):
+    conn = sqlite3.connect('vibefit.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM meals WHERE date = ?', (date,))
+    rows = c.fetchall()
+    conn.close()
+    return rows
+
+# Добавление нового приема пищи в базу данных
+def add_meal_to_db(meal):
     conn = sqlite3.connect('vibefit.db')
     c = conn.cursor()
     c.execute('''
-        SELECT title, description, video_id FROM workouts WHERE date = ?
-    ''', (date,))
-    rows = c.fetchall()
+        INSERT INTO meals (meal_type, name, calories, proteins, fats, carbs, date)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ''', (meal['meal_type'], meal['name'], meal['calories'], meal['proteins'], meal['fats'], meal['carbs'], meal['date']))
+    conn.commit()
     conn.close()
-    return [{"title": row[0], "description": row[1], "video_id": row[2]} for row in rows]
+
+# Удаление приема пищи по ID
+def delete_meal_from_db(meal_id):
+    conn = sqlite3.connect('vibefit.db')
+    c = conn.cursor()
+    c.execute('DELETE FROM meals WHERE id = ?', (meal_id,))
+    conn.commit()
+    conn.close()
 
 @app.route('/')
 def main():
     return render_template('main.html')
+
+@app.route('/api/meals/<date>', methods=['GET'])
+def get_meals(date):
+    meals = get_meals_for_day(date)
+    return jsonify(meals)
+
+@app.route('/api/meals', methods=['POST'])
+def add_meal():
+    meal = request.get_json()
+
+    # Ensure the 'date' key is provided
+    if 'date' not in meal:
+        meal['date'] = datetime.now().strftime('%Y-%m-%d')
+
+    add_meal_to_db(meal)  # Add the meal to the database
+    return jsonify({"message": "Meal added successfully!"}), 201
 
 @app.route('/register')
 def register():
@@ -54,26 +100,6 @@ def personal_office():
 @app.route('/workouts')
 def workouts():
     return render_template('workouts.html')
-
-@app.route('/api/workouts', methods=['GET'])
-def get_workouts():
-    date = request.args.get('date')
-    conn = sqlite3.connect('vibefit.db')
-    cursor = conn.cursor()
-    query = "SELECT title, description, video_id FROM workouts WHERE date = ?"
-    cursor.execute(query, (date,))
-    rows = cursor.fetchall()
-    conn.close()
-
-    workouts = []
-    for row in rows:
-        workouts.append({
-            "title": row[0],
-            "description": row[1],
-            "video_id": row[2]
-        })
-
-    return jsonify(workouts)
 
 @app.route('/nutrition')
 def nutrition():
