@@ -61,7 +61,7 @@ h2 {
     max-width: 800px;
     padding: 20px;
     background: white;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -72,11 +72,14 @@ h2 {
 }
 
 .week-navigation button {
-    padding: 10px;
+    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     background: #538558;
+    font-size: 1em;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
 }
 
