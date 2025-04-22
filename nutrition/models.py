@@ -1,31 +1,85 @@
 from django.db import models
 from users.models import UserDetails
+from django.core.validators import MinValueValidator
 
-class CaloricIntake(models.Model):
-    user = models.OneToOneField(UserDetails, on_delete=models.CASCADE)
-    daily_calories = models.IntegerField()
-
-    def calculate_calories(self):
-        weight = self.user.weight
-        height = self.user.height
-        training_level = self.user.training_level
-        goal = self.user.goal
-
-        base_calories = 10 * weight + 6.25 * height - 5 * 30 + 5
-        if training_level == 'beginner':
-            base_calories *= 1.2
-        elif training_level == 'intermediate':
-            base_calories *= 1.375
-        elif training_level == 'advanced':
-            base_calories *= 1.55
-
-        if goal == 'lose-weight':
-            base_calories -= 500
-        elif goal == 'gain-muscle':
-            base_calories += 500
-
-        self.daily_calories = base_calories
-        self.save()
+class DailyNutrition(models.Model):
+    user = models.ForeignKey(UserDetails, on_delete=models.CASCADE)
+    date = models.DateField()
+    calories = models.PositiveIntegerField(default=0)
+    proteins = models.PositiveIntegerField(default=0)
+    fats = models.PositiveIntegerField(default=0)
+    carbs = models.PositiveIntegerField(default=0)
+    goal_calories = models.PositiveIntegerField(default=0)
+    goal_proteins = models.PositiveIntegerField(default=0)
+    goal_fats = models.PositiveIntegerField(default=0)
+    goal_carbs = models.PositiveIntegerField(default=0)
+    water_intake = models.PositiveIntegerField(
+        default=0,
+        validators=[MinValueValidator(0)],
+        help_text="In milliliters"
+    )
+    
+    class Meta:
+        unique_together = ('user', 'date')
+        verbose_name = 'Daily Nutrition'
+        verbose_name_plural = 'Daily Nutrition'
+        ordering = ['-date']
 
     def __str__(self):
-        return f"{self.user.user.username} - {self.daily_calories} kcal/day"
+        return f"{self.user.user.username} - {self.date} - {self.calories}/{self.goal_calories}"
+
+    @property
+    def remaining_calories(self):
+        return self.goal_calories - self.calories
+
+    @property
+    def is_calorie_deficit(self):
+        return self.remaining_calories >= 0
+
+    @property
+    def progress_percentage(self):
+        if self.goal_calories == 0:
+            return 0
+        return min(100, round((self.calories / self.goal_calories) * 100, 1))
+
+    @property
+    def protein_percentage(self):
+        if self.goal_proteins == 0:
+            return 0
+        return min(100, round((self.proteins / self.goal_proteins) * 100, 1))
+
+    @property
+    def fat_percentage(self):
+        if self.goal_fats == 0:
+            return 0
+        return min(100, round((self.fats / self.goal_fats) * 100, 1))
+
+    @property
+    def carb_percentage(self):
+        if self.goal_carbs == 0:
+            return 0
+        return min(100, round((self.carbs / self.goal_carbs) * 100, 1))
+
+class Meal(models.Model):
+    MEAL_TYPES = (
+        ('breakfast', 'Breakfast'),
+        ('lunch', 'Lunch'),
+        ('dinner', 'Dinner'),
+        ('snacks', 'Snacks'),
+    )
+
+    nutrition = models.ForeignKey(DailyNutrition, on_delete=models.CASCADE, related_name='meals')
+    meal_type = models.CharField(max_length=20, choices=MEAL_TYPES)
+    name = models.CharField(max_length=100)
+    calories = models.PositiveIntegerField(validators=[MinValueValidator(0)])
+    proteins = models.PositiveIntegerField(validators=[MinValueValidator(0)])
+    fats = models.PositiveIntegerField(validators=[MinValueValidator(0)])
+    carbs = models.PositiveIntegerField(validators=[MinValueValidator(0)])
+    created_at = models.DateTimeField(auto_now_add=True)
+    notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.calories} kcal)"
+
+    class Meta:
+        ordering = ['created_at']

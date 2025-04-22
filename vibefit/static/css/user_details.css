@@ -24,33 +24,53 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../img/background.jpg");
+    background-image: url("../img/registration.jpg");
     background-size: cover;
     background-position: center;
-    filter: blur(3px);
+    filter: blur(10px);
     z-index: -1;
 }
 
-.form-container {
-    background: rgba(255, 255, 255);
-    border-radius: 30px;
-    padding: 40px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    min-height: 650px;
+.registration-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.registration-image {
+    flex: 1;
+    max-width: 50%;
+    margin-right: 20px;
+}
+
+.registration-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+}
+
+.form-container {
+    flex: 1;
+    max-width: 40%;
     text-align: center;
+    padding-right: 50px;
 }
 
 .form-container h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
-    margin-top: 30px;
 }
 
 form input, form select {
-    width: 80%;
+    width: 100%;
     padding: 20px;
     margin: 10px 0;
     border-radius: 30px;
@@ -58,7 +78,6 @@ form input, form select {
     font-size: 16px;
     background-color: #EBEADE;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -73,22 +92,14 @@ input[type="number"] {
 }
 
 form select {
-    width: 80%;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 30px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    background-color: #EBEADE;
-    box-sizing: border-box;
-    -webkit-appearance: none;
+    -webkit-appearance: auto;
     -moz-appearance: none;
-    appearance: none;
+    appearance: auto;
     text-align: center;
 }
 
 button {
-    width: 80%;
+    width: 100%;
     padding: 25px;
     margin-top: 20px;
     border: none;
@@ -108,16 +119,65 @@ button:hover {
 p a {
     color: #000000;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.avatar-image {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
+p a:hover {
+    color: #A19C84;
+    text-decoration: none;
 }
 
-.user-info {
+.error-messages {
+    color: red;
+    font-size: 12px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-field input {
+    width: 100%;
+    padding-right: 30px;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    z-index: 2;
+  }
+  
+  .toggle-password:hover {
+    color: #007BFF;
+  }
+  
+input[type="password"] {
+    padding-right: 40px;
+}
+
+.error-message {
+    background-color: #f44336;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    width: 90%;
+    max-width: 400px;
     display: none;
-  }  
+    font-size: 16px;
+    z-index: 1000;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    color: #333;
+}
