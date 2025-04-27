@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
+__pycache__/
+*.pyc
+*.sqlite3
+/staticfiles/
+/media/
 .DS_Store
 .idea
 *.db
@@ -129,7 +134,7 @@ celerybeat.pid
 
 # Environments
 .env
-.venv
+venv
 env/
 venv/
 ENV/
