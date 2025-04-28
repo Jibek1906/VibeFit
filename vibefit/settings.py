@@ -31,11 +31,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'users',
     'workouts',
     'nutrition',
+
     'rest_framework',
     'storages',
+
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -74,13 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vibefit.wsgi.application'
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'TIMEOUT': 3600 * 6,
-    }
-}
-
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3'),
@@ -89,19 +87,18 @@ DATABASES = {
     )
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 3600 * 6,
+    }
+}
+
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -113,22 +110,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "vibefit/static"),
+    os.path.join(BASE_DIR, 'vibefit/static'),
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-if os.getenv('USE_S3', 'False') == 'True':
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    AWS_S3_FILE_OVERWRITE = False
-    AWS_DEFAULT_ACL = None
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+MEDIA_URL = '/media/'
 
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
@@ -142,9 +136,7 @@ if not DEBUG:
         'version': 1,
         'disable_existing_loggers': False,
         'handlers': {
-            'console': {
-                'class': 'logging.StreamHandler',
-            },
+            'console': {'class': 'logging.StreamHandler'},
         },
         'loggers': {
             'django': {
