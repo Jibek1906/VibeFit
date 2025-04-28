@@ -58,7 +58,7 @@ class UserProfile(models.Model):
     ], default='Beginner')
     avatar = models.ImageField(
     upload_to='avatars/', 
-    default='https://asset.cloudinary.com/do4epjo9m/121aa14bcc0140bc3f397f4be44adb0c', 
+    default='https://res.cloudinary.com/do4epjo9m/image/upload/v1745842509/default_avatar.png.jpg', 
     blank=True, 
     null=True)
 
