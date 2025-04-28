@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'vibefit.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3'),
+        default=os.getenv('DATABASE_URL'),
         conn_max_age=600,
-        ssl_require=not DEBUG
+        ssl_require=True
     )
 }
 
@@ -129,6 +129,7 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Heroku settings
 django_heroku.settings(locals(), staticfiles=False)
 
 if not DEBUG:
