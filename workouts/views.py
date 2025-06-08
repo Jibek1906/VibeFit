@@ -20,7 +20,6 @@ WORKOUT_EQUIPMENT = [
 
 @login_required
 def workouts_api(request):
-    """Enhanced workout API with better caching, filtering and availability checks"""
     try:
         user_details = UserDetails.objects.get(user=request.user)
     except UserDetails.DoesNotExist:
@@ -116,7 +115,6 @@ def workouts_api(request):
     return JsonResponse(response)
 
 def is_video_available(video_id):
-    """Check if video is available by checking cache first"""
     cache_key = f"video_available_{video_id}"
     cached_result = cache.get(cache_key)
     if cached_result is not None:
@@ -125,7 +123,6 @@ def is_video_available(video_id):
     return True
 
 def calculate_rest_day(user_details, date):
-    """Improved rest day calculation with weekly limits"""
     day_of_week = date.weekday()
     week_start = date - timedelta(days=date.weekday())
     rest_days_this_week = 0
@@ -143,18 +140,16 @@ def calculate_rest_day(user_details, date):
     return False
 
 def is_scheduled_rest_day(user_details, date):
-    """Check if date is scheduled as rest day for user's level"""
     day_of_week = date.weekday()
-    if user_details.training_level == 'beginner' and day_of_week in [2, 5]:  # Wed, Sat
+    if user_details.training_level == 'beginner' and day_of_week in [2, 5]:
         return True
-    elif user_details.training_level == 'intermediate' and day_of_week == 3:  # Thu
+    elif user_details.training_level == 'intermediate' and day_of_week == 3:
         return True
-    elif user_details.training_level == 'advanced' and day_of_week == 0:  # Sun
+    elif user_details.training_level == 'advanced' and day_of_week == 0:
         return True
     return False
 
 def get_rest_day_message(user_details):
-    """Personalized rest day messages"""
     messages = {
         'beginner': [
             "Your body needs recovery after those first workouts!",
@@ -175,7 +170,6 @@ def get_rest_day_message(user_details):
     return random.choice(messages.get(user_details.training_level, ["Rest day for recovery and growth."]))
 
 def generate_workout_queries(user_details, date):
-    """Generate diverse workout queries based on user profile and date"""
     day_of_week = date.weekday()
     week_of_month = (date.day - 1) // 7
 
@@ -183,7 +177,7 @@ def generate_workout_queries(user_details, date):
         focus = ['cardio', 'cardio', 'strength', 'cardio', 'strength', 'flexibility', 'cardio'][day_of_week]
     elif user_details.goal == 'gain-muscle':
         focus = ['strength', 'strength', 'cardio', 'strength', 'strength', 'flexibility', 'strength'][day_of_week]
-    else:  # maintain
+    else:
         focus = ['strength', 'cardio', 'strength', 'cardio', 'flexibility', 'cardio', 'strength'][day_of_week]
 
     variation = week_of_month % 4
@@ -218,7 +212,6 @@ def generate_workout_queries(user_details, date):
     return queries
 
 def generate_fallback_queries(user_details):
-    """Generate fallback queries when initial search fails"""
     fallbacks = []
     base = f"{user_details.training_level} workout"
     
@@ -244,7 +237,6 @@ def generate_fallback_queries(user_details):
     return fallbacks
 
 def clean_workout_title(title):
-    """Clean up workout titles"""
     removals = [
         "FULL BODY WORKOUT", "HOME WORKOUT", "NO EQUIPMENT",
         "BEGINNER", "INTERMEDIATE", "ADVANCED", "CHALLENGE",
@@ -255,7 +247,6 @@ def clean_workout_title(title):
     return " ".join(title.split()).strip()
 
 def extract_trainer(title):
-    """Extract trainer name from title if known"""
     TRUSTED_TRAINERS = [
         "Chloe Ting", "Pamela Reif", "Heather Robertson",
         "Yoga With Adriene", "Fitness Blender", "Blogilates",
@@ -267,7 +258,6 @@ def extract_trainer(title):
     return None
 
 def get_workout_tags(title, user_details):
-    """Extract tags from workout title with user context"""
     title_lower = title.lower()
     tags = []
     
@@ -318,7 +308,6 @@ def get_workout_tags(title, user_details):
 
 @login_required
 def workouts_view(request):
-    """Render workout page with user context"""
     try:
         user_details = UserDetails.objects.get(user=request.user)
         registration_date = request.user.date_joined.date()

@@ -1,18 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from datetime import datetime, timedelta
+from datetime import datetime
 from .models import DailyNutrition, Meal
 from users.models import UserDetails
-import json
-from django.views.decorators.csrf import csrf_exempt
-from django.core.exceptions import ValidationError
 from .models import FoodItem
-import json
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.db.models import Q
-from .models import FoodItem
 import json
 
 def calculate_daily_calories(user_details):
@@ -458,4 +451,3 @@ def api_get_user_foods(request):
         except Exception as e:
             return JsonResponse({'status': 'error', 'error': str(e)}, status=400)
     return JsonResponse({'status': 'error', 'error': 'Invalid method'}, status=405)
-

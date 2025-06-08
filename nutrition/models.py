@@ -25,6 +25,7 @@ class DailyNutrition(models.Model):
     goal_proteins = models.PositiveIntegerField(default=0)
     goal_fats = models.PositiveIntegerField(default=0)
     goal_carbs = models.PositiveIntegerField(default=0)
+    burned_extra_calories = models.PositiveIntegerField(default=0)
     water_intake = models.PositiveIntegerField(
         default=0,
         validators=[MinValueValidator(0)],
@@ -39,6 +40,11 @@ class DailyNutrition(models.Model):
 
     def __str__(self):
         return f"{self.user.user.username} - {self.date} - {self.calories}/{self.goal_calories}"
+    
+    @property
+    def net_calories(self):
+        return self.calories - self.burned_extra_calories
+
 
     @property
     def remaining_calories(self):
