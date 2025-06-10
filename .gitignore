@@ -9,6 +9,10 @@ __pycache__/
 .DS_Store
 .idea
 *.db
+.idea/
+.venv/
+db.sqlite3
+
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
