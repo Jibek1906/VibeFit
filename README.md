@@ -2,7 +2,7 @@
 
 **VibeFit** is a responsive web platform designed for postpartum women to manage nutrition, workouts, and overall wellness. The platform includes personalized calorie goals, macronutrient targets, water intake tracking, and AI-powered workout suggestions based on excess calorie intake. Built with Django and integrated with YouTube and OpenAI APIs.
 
-**Link to website**: [link](https://drive.google.com/drive/folders/1Pcyn-FMIiV3xp8eI9uQtBGYvKGyDFQXV?usp=share_link)
+**Link to website**: [link](https://vibefit-152f5417d7b3.herokuapp.com)
 ---
 
 ## 🌐 Resources
@@ -12,6 +12,7 @@ This project is available online:
 - **Figma Prototype**: [link](https://www.figma.com/design/HcaGu7Z2bWOqRukUIHFcTO/VibeFit?node-id=0-1&t=FU5f4YpJuDYi4Abh-1)
 - **System design**: [link](https://www.figma.com/board/koB11vEsqUe1LFPwyEzmn1/System-design?node-id=0-1&t=47f1pT4MfVLP8iyZ-1)
 - **MVP Video**: [link](https://drive.google.com/drive/folders/1zts_Z0-tMxpea7sWxN4hjpAJxJSgALjh?usp=sharing)
+- **Documentation**: [link](https://drive.google.com/drive/folders/1r23W_tBiWHni_496djJ9--NrP2fVZI2n?usp=sharing)
 
 
 ---
