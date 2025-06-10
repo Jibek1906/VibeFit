@@ -23,7 +23,11 @@ class UserDetails(models.Model):
         ('advanced', 'Advanced'),
     ]
     training_level = models.CharField(max_length=50, choices=training_level_choices)
-    avatar = models.ImageField(upload_to='avatars/', default='avatars/default_avatar.png', blank=True, null=True)
+    avatar = models.ImageField(
+    upload_to='avatars/',
+    blank=True,
+    null=True,
+)
     birth_date = models.DateField(null=True)
     
     class Meta:
@@ -57,10 +61,11 @@ class UserProfile(models.Model):
         ('Advanced', 'Advanced')
     ], default='Beginner')
     avatar = models.ImageField(
-    upload_to='avatars/', 
-    default='https://res.cloudinary.com/do4epjo9m/image/upload/v1745842509/default_avatar.png.jpg', 
-    blank=True, 
-    null=True)
+    upload_to='avatars/',
+    blank=True,
+    null=True,
+)
+
 
     def __str__(self):
         return self.user.username
