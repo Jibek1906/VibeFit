@@ -120,7 +120,7 @@ def apply_advanced_filters(videos, user_details):
     KEYWORD_BLACKLIST = [
         "compilation", "fail", "funny", "challenge",
         "extreme", "competition", "prank", "try not to laugh",
-        "dumbbells", "resistance bands", "kettlebells", "dumbbell", "gym",
+        "dumbbells", "resistance bands", "kettlebells", "dumbbell", "gym", "rope"
     ]
 
     result = []
