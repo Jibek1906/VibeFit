@@ -1,6 +1,6 @@
 import csv
 import os
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand # type: ignore
 from nutrition.models import FoodItem
 
 class Command(BaseCommand):
