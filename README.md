@@ -44,6 +44,7 @@ This project is available online:
 - Daily water intake tracking.
 - Full CRUD for meals and food entries.
 - UI adapts for mobile.
+- 📊 Food database is initially based on the [Kaggle Food Nutrition Dataset](https://www.kaggle.com/datasets/utsavdey1410/food-nutrition-dataset/data) and can be expanded by users with their own custom food entries.
 
 ### 📊 Admin Panel
 - Manage users, meals, food items, and video suggestions.
