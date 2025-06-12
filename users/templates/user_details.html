@@ -3,19 +3,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <title>User Details Page</title>
     <style>
       * {
         box-sizing: border-box;
       }
 
+      html,
       body {
         margin: 0;
         padding: 0;
         font-family: "Arial", sans-serif;
-        background-color: #f4f4f4;
         font-size: 16px;
+        overflow-x: hidden;
+        background-color: #f4f4f4;
+      }
+
+      form {
+        width: 100%;
+      }
+
+      .form-field input,
+      .form-field select {
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .form-field {
+        min-width: 0;
       }
 
       .page-container {
